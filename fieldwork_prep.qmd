@@ -1,0 +1,18 @@
+---
+title: "fieldwork_planning"
+format: html
+editor: visual
+---
+
+## Fieldwork planning at CamLam
+
+```{r}
+# randomly selecting trees for sampling
+# for 2B: there are 117 trees
+random_integer <- sample(1:117, 15)
+print(random_integer)
+# output selected: 6   1  25  48  89  62  73  36 106  75  93  14  44  96  65
+
+
+```
+
