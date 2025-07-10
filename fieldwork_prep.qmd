@@ -13,6 +13,8 @@ random_integer <- sample(1:117, 15)
 print(random_integer)
 # output selected: 6   1  25  48  89  62  73  36 106  75  93  14  44  96  65
 
-
+# for T2: there are 163 trees
+random_integer <- sample(1:163, 15)
+print(random_integer)
 ```
 
