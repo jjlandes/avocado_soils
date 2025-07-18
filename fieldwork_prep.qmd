@@ -20,5 +20,6 @@ print(random_integer2)
 # for Y2: there are 134 trees in the subsample
 random_integer3 <- sample(1:134, 15)
 print(random_integer3)
+# output selected: 22 45 63 82 103 15 38 53 70 47 130 110 129 77 62
 ```
 
