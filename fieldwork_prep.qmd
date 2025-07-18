@@ -9,12 +9,16 @@ editor: visual
 ```{r}
 # randomly selecting trees for sampling
 # for 2B: there are 117 trees
-random_integer <- sample(1:117, 15)
-print(random_integer)
+random_integer1 <- sample(1:117, 15)
+print(random_integer1)
 # output selected: 6   1  25  48  89  62  73  36 106  75  93  14  44  96  65
 
 # for T2: there are 163 trees
-random_integer <- sample(1:163, 15)
-print(random_integer)
+random_integer2 <- sample(1:163, 15)
+print(random_integer2)
+
+# for Y2: there are 134 trees in the subsample
+random_integer3 <- sample(1:134, 15)
+print(random_integer3)
 ```
 
