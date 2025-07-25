@@ -21,5 +21,9 @@ print(random_integer2)
 random_integer3 <- sample(1:134, 15)
 print(random_integer3)
 # output selected: 22 45 63 82 103 15 38 53 70 47 130 110 129 77 62
+
+# for Y2 extra sampling: there are 123 trees in the orchard subsample
+random_integer4 <- sample(1:123, 6)
+print(random_integer4)
 ```
 
