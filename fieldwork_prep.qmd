@@ -3,6 +3,12 @@ title: "fieldwork_planning"
 format: html
 editor: visual
 ---
+## importing libraries
+```{r}
+library(googlesheets4)
+library(ggplot2)
+```
+
 
 ## Fieldwork planning at CamLam
 
@@ -25,5 +31,62 @@ print(random_integer3)
 # for Y2 extra sampling: there are 123 trees in the orchard subsample
 random_integer4 <- sample(1:123, 6)
 print(random_integer4)
+```
+# reading the live data in Google sheet in R
+
+```{r}
+gs4_deauth()
+
+sheet_data <- read_sheet("15AFFJzaBhtCYQYh3GOlV0cZcTaJR6D0v3OUGUkJRotk")
+
+head(sheet_data)
+```
+
+# preliminary ANOVA test to see tree health metrics between plot locations
+
+```{r}
+stem_anova_result <- aov(stem_diameter_cm ~ plot_id, data = sheet_data)
+
+summary(stem_anova_result)
+
+TukeyHSD(stem_anova_result)
+
+# visualize canopy width by plot
+
+boxplot(stem_diameter_cm ~ plot_id, data = sheet_data,
+        main = "Stem Diameter by Plot Location",
+        ylab = "Stem Diameter (cm)",
+        xlab = "Plot ID")
+
+canopy_anova_result <- aov(avg_canopywidth_cm ~ plot_id, data = sheet_data)
+
+summary(canopy_anova_result)
+
+TukeyHSD(canopy_anova_result)
+
+boxplot(avg_canopywidth_cm ~ plot_id, data = sheet_data,
+        main = "Average Canopy Width by Plot Location",
+        ylab = "Average Canopy Width (cm)",
+        xlab = "Plot ID")
+
+# lets see if canopy width and stem diameter correlate
+
+plot(sheet_data$stem_diameter_cm, sheet_data$avg_canopywidth_cm,
+     main = "Canopy Width vs. Stem Diameter",
+     xlab = "Stem Diameter (cm)",
+     ylab = "Canopy Width (m)",
+     pch = 19, col = "darkgreen")
+
+ggplot(sheet_data, aes(x = stem_diameter_cm, y = avg_canopywidth_cm)) +
+  geom_point(color = "forestgreen") +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  labs(title = "Canopy Width vs. Stem Diameter",
+       x = "Stem Diameter (cm)",
+       y = "Canopy Width (m)") +
+  theme_minimal()
+
+model <- lm(avg_canopywidth_cm ~ stem_diameter_cm, data = sheet_data)
+
+summary(model)
 ```
 
